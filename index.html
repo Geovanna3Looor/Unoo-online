@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO Online - Juega con Amigos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+</head>
+<body>
+    <!-- Pantalla de Inicio -->
+    <div id="homeScreen" class="screen active">
+        <div class="logo">
+            <h1>🃏 UNO Online</h1>
+            <p>Juega hasta con 12 amigos</p>
+        </div>
+        
+        <div class="form-group">
+            <input type="text" id="username" placeholder="Tu nombre" maxlength="15">
+            <input type="text" id="roomCode" placeholder="Código de sala (opcional)">
+        </div>
+        
+        <button id="createRoom">🔥 Crear Sala Privada</button>
+        <button id="joinRoom">🚀 Unirse a Sala</button>
+    </div>
+
+    <!-- Pantalla de Sala -->
+    <div id="roomScreen" class="screen">
+        <div class="room-header">
+            <h2 id="roomTitle">Sala: <span id="roomCodeDisplay">-</span></h2>
+            <button id="backToHome">← Volver</button>
+        </div>
+        
+        <div class="players-grid" id="playersGrid"></div>
+        
+        <div class="room-controls">
+            <button id="startGame" disabled>🎮 Iniciar Partida</button>
+            <button id="copyRoomCode">📋 Copiar Código</button>
+        </div>
+    </div>
+
+    <!-- Pantalla de Juego -->
+    <div id="gameScreen" class="screen">
+        <div class="game-header">
+            <div class="player-info">
+                <span id="currentPlayer">Jugador: Tú</span>
+                <span id="unoStatus"></span>
+            </div>
+            <div class="game-status">
+                <span id="turnIndicator"></span>
+                <span id="direction">↻</span>
+            </div>
+        </div>
+
+        <div class="game-board">
+            <div class="center-card" id="centerCard">
+                <div class="card-placeholder">🃏</div>
+            </div>
+            
+            <div class="chat-section">
+                <div class="voice-controls">
+                    <button id="voiceToggle" title="Chat de Voz">🎤</button>
+                    <button id="stickerBtn" title="Stickers">😄</button>
+                </div>
+                <div id="chatMessages" class="chat-messages"></div>
+                <input type="text" id="chatInput" placeholder="Escribe un mensaje...">
+            </div>
+        </div>
+
+        <div class="hand-container" id="handContainer"></div>
+        
+        <div class="game-controls">
+            <button id="drawCard">Robar Carta</button>
+            <button id="sayUno">¡UNO!</button>
+        </div>
+    </div>
+
+    <!-- Modal de Stickers -->
+    <div id="stickerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="sticker-grid" id="stickerGrid"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
