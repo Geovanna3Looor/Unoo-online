@@ -1,18 +1,20 @@
-{
-  "name": "uno-game-online",
-  "version": "1.0.0",
-  "description": "Juego UNO online para 12 jugadores con voz y stickers",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "socket.io": "^4.7.2",
-    "uuid": "^9.0.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
+const express = require("express");
+const http = require("http");
+const { Server } = require("socket.io");
+
+const app = express();
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "*"
   }
-}
+});
+
+io.on("connection", (socket) => {
+  console.log("Usuario conectado");
+});
+
+server.listen(3000, () => {
+  console.log("Servidor listo");
+});
